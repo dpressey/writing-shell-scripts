@@ -38,10 +38,17 @@ drive_space(){
 
 home_space(){
 	
-	cat <<- EOF
-		<h2>Home Directory Space By $USER</h2>
-		<pre>$(du -s /Users/dpressey/* | sort -nr)</pre>
-	EOF
+	# Only the superuser can get this information
+
+	echo "<h2>Home Directory Space By $USER</h2>"
+
+	if [ "$(id -u)" = "0" ]; then
+		cat <<- EOF
+			<pre>$(du -s /Users/dpressey/* | sort -nr)</pre>
+		EOF
+	else 
+		echo "you must be superuser to access this information!"
+	fi
 }
 
 
