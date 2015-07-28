@@ -9,6 +9,41 @@
 TITLE="My System Info for $HOSTNAME"
 RIGHT_NOW=$(date +"$x %r %Z")
 TIME_STAMP="Updated on $RIGHT_NOW by $USER"
+	
+#################################### 
+	#Functions
+####################################
+
+system_info(){
+	
+	echo "<h2>System release info</h2>"
+	echo "<p>Function not yet implemented</p>"
+}
+
+show_uptime(){
+	
+	cat <<- EOF
+		<h2>System Uptime</h2>
+		<p>$(uptime)</p>
+	EOF
+}
+
+drive_space(){
+	
+	cat <<- EOF
+		<h2>Drive Space</h2>
+		<pre>$(df)</pre>
+	EOF
+}
+
+home_space(){
+	
+	cat <<- EOF
+		<h2>Home Directory Space By $USER</h2>
+		<pre>$(du -s /Users/dpressey/* | sort -nr)</pre>
+	EOF
+}
+
 
 #################################### 
 	#Main
